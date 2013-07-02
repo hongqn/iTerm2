@@ -276,7 +276,7 @@ static const BOOL USE_THIN_SPLITTERS = YES;
 
 - (void)_refreshLabels:(id)sender
 {
-    [tabViewItem_ setLabel:[[self activeSession] name]];
+    //[tabViewItem_ setLabel:[[self activeSession] name]];
     [parentWindow_ setWindowTitle];
 }
 
@@ -298,7 +298,7 @@ static const BOOL USE_THIN_SPLITTERS = YES;
 - (void)nameOfSession:(PTYSession*)session didChangeTo:(NSString*)newName
 {
     if ([self activeSession] == session) {
-        [tabViewItem_ setLabel:newName];
+        //[tabViewItem_ setLabel:newName];
     }
 }
 
@@ -333,7 +333,7 @@ static const BOOL USE_THIN_SPLITTERS = YES;
     }
     if (changed) {
         [parentWindow_ setWindowTitle];
-        [tabViewItem_ setLabel:[[self activeSession] name]];
+        //[tabViewItem_ setLabel:[[self activeSession] name]];
         if ([realParentWindow_ currentTab] == self) {
             // If you set a textview in a non-current tab to the first responder and
             // then close that tab, it crashes with NSTextInput caling
@@ -569,9 +569,9 @@ static const BOOL USE_THIN_SPLITTERS = YES;
     if (theTabViewItem != nil) {
         // While Lion-restoring windows, there may be no active session.
         if ([self activeSession]) {
-            [tabViewItem_ setLabel:[[self activeSession] name]];
+            //[tabViewItem_ setLabel:[[self activeSession] name]];
         } else {
-            [tabViewItem_ setLabel:@""];
+            //[tabViewItem_ setLabel:@""];
         }
         [tabViewItem_ setView:tabView_];
     }

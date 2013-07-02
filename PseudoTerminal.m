@@ -3118,6 +3118,12 @@ NSString *sessionsKey = @"sessions";
                                 keyEquivalent:@""] autorelease];
     [item setRepresentedObject:tabViewItem];
     [rootMenu addItem:item];
+    
+    item = [[[NSMenuItem alloc] initWithTitle:ITLocalizedString(@"Rename Tab")
+                                       action:@selector(renameTabContextualMenuAction:)
+                                keyEquivalent:@""] autorelease];
+    [item setRepresentedObject:tabViewItem];
+    [rootMenu addItem:item];
 
     if ([TABVIEW numberOfTabViewItems] > 1) {
         item = [[[NSMenuItem alloc] initWithTitle:ITLocalizedString(@"Move to new window")
@@ -5364,6 +5370,30 @@ NSString *sessionsKey = @"sessions";
 - (void)closeTabContextualMenuAction: (id) sender
 {
     [self closeTab:(id)[[sender representedObject] identifier]];
+}
+
+// rename a tab
+- (void)renameTabContextualMenuAction:(id)sender
+{
+    // Input dialog code copied from
+    // http://stackoverflow.com/questions/7387341/how-to-create-and-get-return-value-from-cocoa-dialog
+    
+    NSAlert *alert = [NSAlert alertWithMessageText:@"New Tab Name"
+                                     defaultButton:@"OK"
+                                   alternateButton:@"Cancel"
+                                       otherButton:nil
+                         informativeTextWithFormat:@""];
+    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 200, 24)];
+    [input autorelease];
+    [alert setAccessoryView:input];
+    NSInteger button = [alert runModal];
+    if (button == NSAlertDefaultReturn) {
+        [input validateEditing];
+        NSString *newName = [input stringValue];
+    
+        NSTabViewItem *aTabViewItem = [sender representedObject];
+        [aTabViewItem setLabel:newName];
+    }
 }
 
 // moves a tab with its session to a new window

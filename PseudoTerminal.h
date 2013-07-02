@@ -961,6 +961,9 @@ NSWindowDelegate,
 // Called when the "Close tab" contextual menu item is clicked.
 - (void)closeTabContextualMenuAction:(id)sender;
 
+// Called when the "Rename tab" contextual menu item is clicked.
+- (void)renameTabContextualMenuAction:(id)sender;
+
 // Move a tab to a new window due to a context menu selection.
 - (void)moveTabToNewWindowContextualMenuAction:(id)sender;
 
